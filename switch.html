@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Switch</title>
+   <style>
+      body{
+         background:#eee;
+         justify-content: center;
+         align-items:center;
+         display:flex;
+         min-height:100vh;
+      }
+      .mainContainer{
+         width:400px;
+         height:400px;
+         background:#ddd;
+         justify-content: center;
+         align-items:center;
+         display:flex;
+      }
+      .switchBody{
+         width:200px;
+         height:100px;
+         border-radius:50px;
+         background:linear-gradient(to bottom, #bbb, #fff);
+         position:relative;
+         perspective: 10em;
+      }
+      .switchFlip{
+         width:180px;
+         height:90px;
+         background:linear-gradient(to top, #bbb, #fff);
+         top:0px;
+         right:0px;
+         bottom:0px;
+         left:0px;
+         margin:auto;
+         border-radius:50px;
+         position:absolute;
+         transform:rotateY(-10deg);
+         transition: all 0.5s;         
+      }
+      .switchButton{
+         position:absolute;
+         width:50px;
+         height:50px;
+         border-radius: 50%;
+         margin:25px;
+         background:#fff;
+         box-shadow:0px 0px 5px rgba(0,0,0,0.4),
+                  inset 0px 0px 20px rgba(0,0,0,0.3);
+         transition: all 0.5s;                  
+      }
+   </style>
+</head>
+<body>
+   <div class="mainContainer">
+      <div class="switchBody" onclick="toggleSwitch();">
+         <div class="switchFlip"></div>
+         <div class="switchButton"></div>
+      </div>
+   </div>
+
+   <script>
+      var switchStatus = "off",
+          switchButton = document.querySelector('.switchButton'),
+          switchFlip = document.querySelector('.switchFlip');
+
+
+      function toggleSwitch(){
+         if(switchStatus == "off"){
+            // Off 
+            switchButton.style.transform = "translateX(100px)";
+            switchButton.style.background = "dodgerblue";
+            switchFlip.style.transform = "rotateY(10deg)";
+            switchStatus = "on";
+         }else if(switchStatus == "on"){
+            // On
+            switchButton.style.transform = "translateX(0px)";
+            switchButton.style.background = "#fff";
+            switchFlip.style.transform = "rotateY(-10deg)";
+            switchStatus = "off";
+         }
+      }
+   </script>
+</body>
+</html>
